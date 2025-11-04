@@ -5,7 +5,9 @@ export const caseData = (data, subjectPrefix, contentPrefix, waStatus) => {
       status: "open",
       content_type: "html",
       user_full_name: `${data.surname} ${data.firstName}`,
-      subject: `${subjectPrefix}. ${data.company} - ${Date.now()}`,
+      subject: `${subjectPrefix}. ${
+        data.company
+      } - ${new Date().toLocaleDateString("ru-RU")}`,
       content: `Организация: ${data.company}
   Контакт: ${data.phone} ${data.contname}
   Категория: ${data.cat} ${data.role}
@@ -21,6 +23,7 @@ export const caseData = (data, subjectPrefix, contentPrefix, waStatus) => {
 export const caseDataOmnidesk = (data) => {
   return {
     case: {
+      user_email: "vmarchenko@getmark.ru",
       status: "open",
       content_type: "html",
       user_full_name: `${data.contactName} ${data.contactPhone}`,
