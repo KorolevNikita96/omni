@@ -5,7 +5,8 @@ export const register = (req, res) => {
     isTestMode: false,
     subjectPrefix: "Регистрация",
     contentPrefix: "Инструкция",
-    sendWhatsApp: true
+    sendWhatsApp: true,
+    outsource: false
   })
 }
 
@@ -14,6 +15,7 @@ export const registerTest = (req, res) => {
     isTestMode: true,
     subjectPrefix: "Регистрация (тест)",
     contentPrefix: "Инструкция",
-    sendWhatsApp: false
+    sendWhatsApp: false,
+    outsource: false
   })
 }

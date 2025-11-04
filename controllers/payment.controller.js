@@ -5,6 +5,7 @@ export const payment = (req, res) => {
     isTestMode: false,
     subjectPrefix: "Продление",
     contentPrefix: "Оплата успешно прошла ! WatsApp сообщение ",
-    sendWhatsApp: false
+    sendWhatsApp: false,
+    outsource: false
   })
 }

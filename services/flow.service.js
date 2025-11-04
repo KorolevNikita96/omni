@@ -1,3 +1,4 @@
+import { parseOutsource } from "../utils/parseOutsource.js"
 import { parseRequest } from "../utils/parseRequest.js"
 import { sendWa } from "../utils/sendWa.js"
 
@@ -8,12 +9,13 @@ export async function processFlow(req, res, options = {}) {
     subjectPrefix = "Регистрация",
     contentPrefix = "",
     sendWhatsApp = false,
-    isTestMode = false
+    isTestMode = false,
+    outsource = false
   } = options
 
   try {
-    // Парсинг запроса
-    const data = parseRequest(req.path)
+    const data = outsource ? parseOutsource(req.path) : parseRequest(req.path)
+
     console.log("Обработанные данные:", data)
 
     // Обработка пользователя: поиск, удаление дубликатов, создание/обновление
@@ -21,7 +23,7 @@ export async function processFlow(req, res, options = {}) {
     console.log("Полученный пользователь:", mainUser) */
 
     let waStatus = "Не отправляется"
-    if (sendWhatsApp && !isTestMode) {
+    if (sendWhatsApp && !isTestMode && !outsource) {
       console.info("Отправка WhatsApp...")
       try {
         waStatus = await sendWa(data.phone)
@@ -31,7 +33,7 @@ export async function processFlow(req, res, options = {}) {
     }
 
     // Создание кейса (заявки)
-    await processCase(data, subjectPrefix, contentPrefix, waStatus)
+    await processCase(data, subjectPrefix, contentPrefix, waStatus, outsource)
 
     return res.sendStatus(200)
   } catch (error) {

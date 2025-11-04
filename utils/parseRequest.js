@@ -24,6 +24,7 @@ export const parseRequest = (path) => {
   }
 
   const fields = data.split("|")
+
   if (fields.length !== 15) {
     throw new Error(
       `Неверное число элементов ${fields.length}, должно быть 15!`
