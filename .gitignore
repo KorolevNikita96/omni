@@ -2,7 +2,6 @@
 .eslintrc.json
 node_modules
 nodemon.json
-yarn.lock
 bitomni.py
 classes.py
 data.json
