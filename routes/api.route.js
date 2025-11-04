@@ -9,7 +9,7 @@ const router = Router()
 router.post("/register-test*", registerTest)
 router.post("/register*", register)
 router.post("/payment*", payment)
-router.post(/^\/outsourcing(\||%7C)?.*$/, outsourcing)
+router.post("/outsourcing*", outsourcing)
 router.get("/test-users*", testUsers)
 
 export default router
