@@ -23,18 +23,18 @@ export async function processFlow(req, res, options = {}) {
     /*   const mainUser = await processUser(data)
     console.log("Полученный пользователь:", mainUser) */
 
-    let waStatus = "Не отправляется"
-    if (sendWhatsApp && !isTestMode && !outsource) {
-      console.info("Отправка WhatsApp...")
-      try {
-        waStatus = await sendWa(data.phone)
-      } catch (error) {
-        console.error("Ошибка при отправке WhatsApp:", error.message)
-      }
-    }
+    // let waStatus = "Не отправляется"
+    // if (sendWhatsApp && !isTestMode && !outsource) {
+    //   console.info("Отправка WhatsApp...")
+    //   try {
+    //     waStatus = await sendWa(data.phone)
+    //   } catch (error) {
+    //     console.error("Ошибка при отправке WhatsApp:", error.message)
+    //   }
+    // }
 
-    // Создание кейса (заявки)
-    await processCase(data, subjectPrefix, contentPrefix, waStatus, outsource)
+    // // Создание кейса (заявки)
+    // await processCase(data, subjectPrefix, contentPrefix, waStatus, outsource)
 
     return res.sendStatus(200)
   } catch (error) {

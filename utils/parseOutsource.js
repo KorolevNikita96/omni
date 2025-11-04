@@ -1,5 +1,6 @@
 export const parseOutsource = (path) => {
   let data = decodeURIComponent(path)
+  console.log("decoded data:", data)
 
   data = data.replace(/^[-\/]?(outsourcing)\|?/, "").replace(/^\|/, "")
   console.log("data parse:", data)
