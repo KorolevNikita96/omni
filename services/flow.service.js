@@ -15,9 +15,7 @@ export async function processFlow(req, res, options = {}) {
 
   try {
     const data = outsource ? parseOutsource(req.path) : parseRequest(req.path)
-    console.log("outsource:", outsource)
     console.log("req.path:", req.path)
-
     console.log("Обработанные данные:", data)
 
     // Обработка пользователя: поиск, удаление дубликатов, создание/обновление
