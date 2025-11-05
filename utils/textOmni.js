@@ -20,6 +20,16 @@ export const caseData = (data, subjectPrefix, contentPrefix, waStatus) => {
   }
 }
 
+// company,
+//   contactName,
+//   tid,
+//   contactPhone,
+//   productGroup,
+//   bitrixDiskOnLink,
+//   managerComment,
+//   payment,
+//   dealUrl
+
 export const caseDataOmnidesk = (data) => {
   return {
     case: {
@@ -30,10 +40,17 @@ export const caseDataOmnidesk = (data) => {
       subject: `🚨🚨🚨 Консалтинг 🚨🚨🚨. ${
         data.company
       } - ${new Date().toLocaleDateString("ru-RU")}`,
-      content: `🏢 Организация: ${data.company}
-  👤 Контакт: ${data.contactPhone} ${data.contactName}
-  🔗 Ссылка на заявку: ${data.bitrixDiskOnLink}
-  ${data.managerComment ? "📝  Комментарий: " + data.managerComment : ""}`
+      content: [
+        `🏢 Организация: ${data.company}`,
+        `👤 Контакт: ${data.contactName}`,
+        `📞 Телефон: ${data.contactPhone}`,
+        `🔗 Ссылка от менеджера: ${data.bitrixDiskOnLink}`,
+        `💳 Оплата: ${data.payment}`,
+        `🧾 Ссылка на заявку: ${data.dealUrl}`,
+        data.managerComment && `📝 Комментарий: ${data.managerComment}`
+      ]
+        .filter(Boolean)
+        .join("\n")
     }
   }
 }

@@ -21,6 +21,7 @@ export default [
       "import/no-unresolved": "off",
       "import/extensions": "off",
       "no-console": "off",
+      "no-useless-escape": "off",
 
       "import/order": [
         "error",

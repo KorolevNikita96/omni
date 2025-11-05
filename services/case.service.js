@@ -1,4 +1,4 @@
-import { caseData, caseDataOmnidesk } from "../utils/messagesOmnidesk.js"
+import { caseData, caseDataOmnidesk } from "../utils/textOmni.js"
 
 import { createCase } from "./omni.service.js"
 

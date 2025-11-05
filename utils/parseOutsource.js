@@ -1,8 +1,10 @@
+import { bitrixUrl } from "../config.js"
+
 export const parseOutsource = (path) => {
   let data = decodeURIComponent(path)
   console.log("decoded data:", data)
 
-  data = data.replace(/^[-\/]?(outsourcing)\|?/, "").replace(/^\|/, "")
+  data = data.replace(/^[-/]?(outsourcing)\|?/, "").replace(/^\|/, "")
   console.log("data parse:", data)
 
   console.log("data:", JSON.stringify(data, null, 2))
@@ -11,10 +13,12 @@ export const parseOutsource = (path) => {
     return {
       company: "",
       contactName: "",
+      tid: "",
       contactPhone: "",
       productGroup: "",
       bitrixDiskOnLink: "",
-      managerComment: ""
+      managerComment: "",
+      payment: ""
     }
   }
 
@@ -23,18 +27,25 @@ export const parseOutsource = (path) => {
   const [
     company = "",
     contactName = "",
+    tid = "",
     contactPhone = "",
     productGroup = "",
     bitrixDiskOnLink = "",
-    managerComment = ""
+    managerComment = "",
+    payment = ""
   ] = fields
+
+  const dealUrl = `${bitrixUrl}/crm/deal/details/${tid}/`
 
   return {
     company,
     contactName,
+    tid,
     contactPhone,
     productGroup,
     bitrixDiskOnLink,
-    managerComment
+    managerComment,
+    payment,
+    dealUrl
   }
 }

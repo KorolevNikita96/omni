@@ -25,11 +25,11 @@ export const parseRequest = (path) => {
 
   const fields = data.split("|")
 
-  if (fields.length !== 15) {
-    throw new Error(
-      `Неверное число элементов ${fields.length}, должно быть 15!`
-    )
-  }
+  // if (fields.length !== 15) {
+  //   throw new Error(
+  //     `Неверное число элементов ${fields.length}, должно быть 15!`
+  //   )
+  // }
 
   const [
     tid,
@@ -50,6 +50,7 @@ export const parseRequest = (path) => {
   ] = fields
 
   const dealUrl = `${bitrixUrl}/crm/deal/details/${tid}/`
+
   const cleanTarif =
     tarif
       .replace(/\[\/?(?:table|tr|th|td)\]/g, "")
