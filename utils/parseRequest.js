@@ -14,7 +14,10 @@ import { bitrixUrl } from "../config.js"
 export const parseRequest = (path) => {
   let data = decodeURIComponent(path)
   data = data
-    .replace(/^[-\/]?(register-test|register|payment|test-users|users)\|?/, "")
+    .replace(
+      /^[-\/]?(register-test|register|payment|test-users|users|services)\|?/,
+      ""
+    )
     .replace(/^\|/, "")
 
   console.log("data:", JSON.stringify(data, 2, null))
