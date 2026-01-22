@@ -13,7 +13,7 @@ router.post("/register*", register)
 router.post("/payment*", payment)
 router.post("/services*", services)
 router.post("/outsourcing*", outsourcing)
-router.get("/table*", tableController)
+router.post("/table*", tableController)
 router.get("/test-users*", testUsers)
 
 export default router
