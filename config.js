@@ -16,6 +16,9 @@ const wazzupUrl = process.env.WAZZUP_URL
 const wazzupChannelId = process.env.WAZZUP_CHANNEL_ID
 const wazzupToken = process.env.WAZZUP_TOKEN
 
+// Google Sheets
+const googleSpreadsheetId = process.env.GOOGLE_SPREADSHEET_ID
+
 export {
   bitrixUrl,
   omnideskApiKey,
@@ -24,5 +27,6 @@ export {
   port,
   wazzupChannelId,
   wazzupToken,
-  wazzupUrl
+  wazzupUrl,
+  googleSpreadsheetId
 }
