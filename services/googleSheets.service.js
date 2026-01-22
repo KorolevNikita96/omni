@@ -6,11 +6,18 @@ const auth = new google.auth.GoogleAuth({
 })
 const sheets = google.sheets({ version: "v4", auth })
 
-export async function appendToSheet(data) {
-  const { payment, contactPhone, contactName, company } = data
-  const range = "Sheet1!A1"
+async function getFirstSheetName(spreadsheetId) {
+  const meta = await sheets.spreadsheets.get({
+    spreadsheetId
+  })
+  return meta.data.sheets[0].properties.title
+}
 
+export async function appendToSheet(rowValues) {
   try {
+    const sheetName = await getFirstSheetName(googleSpreadsheetId)
+    const range = `${sheetName}!A1`
+
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId: googleSpreadsheetId,
       range: range
@@ -19,7 +26,9 @@ export async function appendToSheet(data) {
     const hasValues = response.data.values && response.data.values.length > 0
 
     if (!hasValues) {
-      const headers = [["Дата", "Сумма", "Телефон", "Имя", "Компания"]]
+      const headers = [
+        ["Дата", "Компания", "Контакт", "Описание ТЗ", "Ответственный", "Сумма"]
+      ]
       await sheets.spreadsheets.values.update({
         spreadsheetId: googleSpreadsheetId,
         range: range,
@@ -28,21 +37,11 @@ export async function appendToSheet(data) {
       })
     }
 
-    const values = [
-      [
-        new Date().toLocaleString("ru-RU", { timeZone: "Europe/Moscow" }),
-        payment || "",
-        contactPhone || "",
-        contactName || "",
-        company || ""
-      ]
-    ]
-
     await sheets.spreadsheets.values.append({
       spreadsheetId: googleSpreadsheetId,
       range: range,
       valueInputOption: "USER_ENTERED",
-      resource: { values }
+      resource: { values: [rowValues] }
     })
 
     console.log("Данные успешно добавлены в Google таблицу")

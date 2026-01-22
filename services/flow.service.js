@@ -3,7 +3,6 @@ import { parseRequest } from "../utils/parseRequest.js"
 import { sendWa } from "../utils/sendWa.js"
 
 import { processCase } from "./case.service.js"
-import { appendToSheet } from "./googleSheets.service.js"
 
 export async function processFlow(req, res, options = {}) {
   const {
@@ -18,17 +17,6 @@ export async function processFlow(req, res, options = {}) {
     const data = outsource ? parseOutsource(req.path) : parseRequest(req.path)
     console.log("req.path:", req.path)
     console.log("Обработанные данные:", data)
-
-    if (subjectPrefix === "Продление") {
-      const sheetData = {
-        payment: data.payment || data.cleanTarif || data.cleanNotes || "",
-        contactPhone: data.contactPhone || data.phone,
-        contactName: data.contactName || data.contname,
-        company: data.company
-      }
-
-      await appendToSheet(sheetData)
-    }
 
     // Обработка пользователя: поиск, удаление дубликатов, создание/обновление
     /*   const mainUser = await processUser(data)
