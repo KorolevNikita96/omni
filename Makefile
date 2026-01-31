@@ -13,5 +13,5 @@ stop:
 
 rebuild: stop clean build run
 
-rebuild: 
+logs: 
 	docker logs -f omni
